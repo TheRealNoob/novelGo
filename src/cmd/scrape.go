@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 	"github.com/therealnoob/novelGo/config"
+	"github.com/therealnoob/novelGo/scraper"
 )
 
 // NewRunCmd creates the `run` command
@@ -13,19 +12,20 @@ func scrapeCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "scrape",
-		Short: "Run the web scraper",
+		Short: "One-shot scrape a novel",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			fmt.Println("novelGo: Running scraper")
 			cfg, err := config.NewConfig(configFile)
 			if err != nil {
 				return err
 			}
 
-			cmd.Printf("URL: %s", cfg.URL)
+			if err := scraper.Scrape(cfg); err != nil {
+				return err
+			}
 			return nil
 		},
 	}
 
-	cmd.Flags().StringVar(&configFile, "config", "config.yaml", "path to config file")
+	cmd.Flags().StringVarP(&configFile, "config", "c", "config.yaml", "path to config file")
 	return cmd
 }

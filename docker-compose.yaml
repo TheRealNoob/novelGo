@@ -1,0 +1,11 @@
+services:
+  flaresolverr:
+    image: flaresolverr/flaresolverr:v3.3.25
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      # https://github.com/FlareSolverr/FlareSolverr
+      - PORT=8191 # default=8191
+      - PROMETHEUS_ENABLED=true
+      - PROMETHEUS_PORT=8192
+      - TZ=America/Los_Angeles

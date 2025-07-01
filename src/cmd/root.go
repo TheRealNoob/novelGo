@@ -12,7 +12,11 @@ func Execute() error {
 		Short: "A web scraper for novels",
 	}
 
-	rootCmd.AddCommand(scrapeCmd(), configCmd())
+	rootCmd.AddCommand(
+		scrapeCmd(),
+		webserverCmd(),
+		configCmd(),
+	)
 
 	return rootCmd.Execute()
 }

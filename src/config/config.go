@@ -8,8 +8,7 @@ import (
 )
 
 type ConfigStruct struct {
-	URL       string   `mapstructure:"url"`
-	Selectors []string `mapstructure:"selectors"`
+	URL string `mapstructure:"url"`
 }
 
 func NewConfig(configFile string) (*ConfigStruct, error) {
@@ -17,7 +16,6 @@ func NewConfig(configFile string) (*ConfigStruct, error) {
 
 	// Set default values
 	v.SetDefault("url", "")
-	v.SetDefault("selectors", []string{"h1", "a[href]"})
 
 	// Bind environment variables with prefix "NOVELGO"
 	v.SetEnvPrefix("NOVELGO")

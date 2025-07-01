@@ -39,7 +39,7 @@ func configPrintCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVar(&configFile, "config", "config.yaml", "path to config file")
+	cmd.Flags().StringVarP(&configFile, "config", "c", "config.yaml", "path to config file")
 
 	return cmd
 }
